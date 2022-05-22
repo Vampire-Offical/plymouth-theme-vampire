@@ -1,9 +1,8 @@
 [Plymouth Theme]
 Name=vampire
-Description=vampire logo with spinning colored stripes
+Description=A vampire theme for plymouth with vibrant colours inspired by the Sweet theme by eliverlara.
 ModuleName=script
 
 [script]
 ImageDir=/usr/share/plymouth/themes/vampire
 ScriptFile=/usr/share/plymouth/themes/vampire/vampire.script
-UseFirmwareBackground=false
