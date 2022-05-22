@@ -1,6 +1,6 @@
 pkgname=vampire-plymouth
 pkgver=1
-pkgrel=1.1
+pkgrel=1.2
 epoch=
 pkgdesc="bootscreen for vampire os"
 arch=(any)
@@ -9,12 +9,12 @@ groups=(vampire)
 depends=(plymouth)
 conflicts=(plymouth-theme-vampire)
 makedepends=()
-#install=
+install=setup.install
 source=("$pkgname::git+https://github.com/Vampire-Offical/plymouth-theme-vampire.git")
 md5sums=('SKIP')
 
 package() {
 	mkdir -p $pkgdir/usr/share/plymouth/themes/vampire
-	cd $srcdir/$pkgname/sweet-arch
+	cd $srcdir/$pkgname/vampire
 	cp -r . $pkgdir/usr/share/plymouth/themes/vampire
 }

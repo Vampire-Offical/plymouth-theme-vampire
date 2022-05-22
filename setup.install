@@ -1,0 +1,20 @@
+post_install(){
+
+    # echo_info "sed -i '/GRUB_TIMEOUT_STYLE=/d' /etc/default/grub"
+    
+    echo -e "\e[0;32mSetting up systemd units\e[0m"
+    systemctl disable sddm
+    systemctl enable plymouth-sddm
+
+    echo -e "\e[0;32mSetting up kernel hooks\e[0m"
+    sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/d' /etc/default/grub
+    echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 splash rd.udev.log_priority=3 vt.global_cursor_default=0 rd.systemd.show_status=auto"' >> /etc/default/grub
+
+    sed -i '/HOOKS=/d' /etc/mkinitcpio.conf 
+    echo 'HOOKS="base udev plymouth autodetect modconf block keyboard keymap consolefont filesystems"' >> /etc/mkinitcpio.conf
+    mkinitcpio
+    grub-mkconfig -o /boot/grub/grub.cfg
+    plymouth-set-default-theme -R vampire
+    echo ""
+    echo -e "\e[0;32mReboot is recommended\e[0m"
+}
