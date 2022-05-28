@@ -10,9 +10,11 @@ post_install(){
     sed -i '/GRUB_CMDLINE_LINUX_DEFAULT=/d' /etc/default/grub
     echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet loglevel=3 splash rd.udev.log_priority=3 vt.global_cursor_default=0 rd.systemd.show_status=auto"' >> /etc/default/grub
 
+    sed -i '/MODULES=/d' /etc/mkinitcpio.conf
+    echo "MODULES=(i915)" >> /etc/mkinitcpio.cfg
     sed -i '/HOOKS=/d' /etc/mkinitcpio.conf 
     echo 'HOOKS="base udev plymouth autodetect modconf block keyboard keymap consolefont filesystems"' >> /etc/mkinitcpio.conf
-    mkinitcpio
+    mkinitcpio -P
     grub-mkconfig -o /boot/grub/grub.cfg
     plymouth-set-default-theme -R vampire
     echo ""

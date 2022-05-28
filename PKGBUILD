@@ -1,6 +1,6 @@
 pkgname=vampire-plymouth
 pkgver=1
-pkgrel=1.2
+pkgrel=1.3
 epoch=
 pkgdesc="bootscreen for vampire os"
 arch=(any)
